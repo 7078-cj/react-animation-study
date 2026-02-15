@@ -12,10 +12,20 @@ function App() {
   //transition is to control how it will be animated
   return (
     <>
+
+    {/* Motion Basic */}
      <motion.div 
         initial={{opacity: 0}} 
         animate={{opacity: 1}} 
         transition={{duration: 2}}>
+        <h1>Hello World</h1>
+     </motion.div>
+
+     {/* postion and movement */}
+     <motion.div 
+        initial={{opacity: 0, x: -100, y:40}} 
+        animate={{opacity: 1, x:0, y:0}} 
+        transition={{duration: 0.8, ease:'easeIn'}}>
         <h1>Hello World</h1>
      </motion.div>
     </>
