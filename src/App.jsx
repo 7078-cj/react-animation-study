@@ -28,6 +28,15 @@ function App() {
         transition={{duration: 0.8, ease:'easeIn'}}>
         <h1>Hello World</h1>
      </motion.div>
+
+     {/* Interactive Button */}
+     <motion.button
+      whileHover={{scale: 1.55, y:-20}}
+      whileTap={{scale: 0.9, y: 1}}
+      transition={{type: 'spring', stiffness: 300, damping: 2}}
+     >
+        Get Started
+     </motion.button>
     </>
   )
 }
