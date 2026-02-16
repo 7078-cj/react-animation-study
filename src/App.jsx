@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { motion } from 'motion/react'
+import DraggableCard from './components/DraggableCard'
 
 
 const container = {
@@ -66,6 +67,9 @@ function App() {
           </motion.li>
         ))}
      </motion.ul>
+
+     {/* Drag and drop */}
+     <DraggableCard/>
 
 
     </>
