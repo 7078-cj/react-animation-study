@@ -1,89 +1,40 @@
-import { useState } from 'react'
+import React from 'react'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import Home from './pages/home'
+import About from './pages/About'
 import './App.css'
-import { motion } from 'motion/react'
-import DraggableCard from './components/DraggableCard'
-import DismissibleAlert from './components/DismissibleAlert'
-import CollapsibleList from './components/CollapsibleList'
-import LiveBadge from './components/LiveBadge'
+import { AnimatePresence, motion } from 'motion/react'
 
-
-const container = {
-  hidden: {opacity: 0},
-  visible: {opacity: 1, transition: {staggerChildren: 1, delayChildren: 1}}
-}
-
-const item = {
-  hidden: {opacity: 0, y: 20},
-  visible: {opacity: 1, y:0}
-}
-
-
-function App() {
-  const [count, setCount] = useState(0)
-  const features = ['fast', 'declarative', 'powerful', 'fun']
-
-  //Notes:
-  //an animation has a starting point and an ending point and method of animation
-  //initial is the starting state of the element
-  //animate is the ending state of the element
-  //transition is to control how it will be animated
+export default function App() {
   return (
-    <>
-
-    {/* Motion Basic */}
-     <motion.div 
-        initial={{opacity: 0}} 
-        animate={{opacity: 1}} 
-        transition={{duration: 2}}>
-        <h1>Hello World</h1>
-     </motion.div>
-
-     {/* postion and movement */}
-     <motion.div 
-        initial={{opacity: 0, x: -100, y:40}} 
-        animate={{opacity: 1, x:0, y:0}} 
-        transition={{duration: 0.8, ease:'easeIn'}}>
-        <h1>Hello World</h1>
-     </motion.div>
-
-     {/* Interactive Button */}
-     <motion.button
-      whileHover={{scale: 1.55, y:-20}}
-      whileTap={{scale: 0.9, y: 1}}
-      transition={{type: 'spring', stiffness: 300, damping: 2}}
-     >
-        Get Started
-     </motion.button>
-
-     {/* Variants & Staggered Animations */}
-     <motion.ul
-      variants={container}
-      initial='hidden'
-      animate='visible'
-     >
-        {features.map((feature)=>(
-          <motion.li 
-            key={feature}
-            variants={item}
-            >
-              {feature}
-          </motion.li>
-        ))}
-     </motion.ul>
-
-     {/* Drag and drop */}
-     <DraggableCard/>
-
-     {/* Animate Pressence */}
-     <DismissibleAlert/>
-
-     {/* Layout Animations */}
-     <CollapsibleList/>
-
-      {/* Inifinite and Repeating Animation */}
-      <LiveBadge/>
-    </>
+    <BrowserRouter>
+      <AnimatedRoutes />
+    </BrowserRouter>
   )
 }
 
-export default App
+function PageTransition({children}){
+  return(
+    <motion.main 
+    initial={{opacity: 0, x:50}}
+    animate={{opacity: 1, x:0}}
+    exit={{opacity: 0, x:-50}}
+    transition={{duration: 0.35, ease: "easeOut"}}
+    >
+      {children}
+    </motion.main>
+  )
+}
+
+function AnimatedRoutes() {
+  const location = useLocation()
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
+  )
+}
