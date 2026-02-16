@@ -4,6 +4,7 @@ import { motion } from 'motion/react'
 import DraggableCard from './components/DraggableCard'
 import DismissibleAlert from './components/DismissibleAlert'
 import CollapsibleList from './components/CollapsibleList'
+import LiveBadge from './components/LiveBadge'
 
 
 const container = {
@@ -79,7 +80,8 @@ function App() {
      {/* Layout Animations */}
      <CollapsibleList/>
 
-
+      {/* Inifinite and Repeating Animation */}
+      <LiveBadge/>
     </>
   )
 }
