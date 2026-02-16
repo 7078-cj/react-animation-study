@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { motion } from 'motion/react'
 import DraggableCard from './components/DraggableCard'
+import DismissibleAlert from './components/DismissibleAlert'
 
 
 const container = {
@@ -70,6 +71,9 @@ function App() {
 
      {/* Drag and drop */}
      <DraggableCard/>
+
+     {/* Animate Pressence */}
+     <DismissibleAlert/>
 
 
     </>
