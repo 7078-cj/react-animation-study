@@ -3,6 +3,7 @@ import './App.css'
 import { motion } from 'motion/react'
 import DraggableCard from './components/DraggableCard'
 import DismissibleAlert from './components/DismissibleAlert'
+import CollapsibleList from './components/CollapsibleList'
 
 
 const container = {
@@ -74,6 +75,9 @@ function App() {
 
      {/* Animate Pressence */}
      <DismissibleAlert/>
+
+     {/* Layout Animations */}
+     <CollapsibleList/>
 
 
     </>
